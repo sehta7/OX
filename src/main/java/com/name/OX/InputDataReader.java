@@ -21,12 +21,11 @@ class InputDataReader {
         return scanner.nextLine();
     }
 
-    String readBoardLength() {
-        return scanner.nextLine();
-    }
-
-    String readBoardHeight() {
-        return scanner.nextLine();
+    String readBoardSize() {
+        String size = scanner.nextLine();
+        size += ",";
+        size += scanner.nextLine();
+        return size;
     }
 
     String readWinningSigns() {

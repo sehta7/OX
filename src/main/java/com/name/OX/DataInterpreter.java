@@ -14,8 +14,9 @@ class DataInterpreter {
         return player;
     }
 
-    int interpretBoardDimension(String boardDimensionText) {
-        return Integer.parseInt(boardDimensionText);
+    BoardSize interpretBoardSize(String boardSizeText) {
+        String[] splitSize = boardSizeText.split(",");
+        return new BoardSize(Integer.valueOf(splitSize[0]), Integer.valueOf(splitSize[1]));
     }
 
     int interpretWinningSigns(String winningSignsText) {
