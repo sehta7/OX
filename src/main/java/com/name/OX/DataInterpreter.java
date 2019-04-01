@@ -15,8 +15,7 @@ class DataInterpreter {
     }
 
     BoardSize interpretBoardSize(String boardSizeText) {
-        String[] splitSize = boardSizeText.split(",");
-        return new BoardSize(Integer.valueOf(splitSize[0]), Integer.valueOf(splitSize[1]));
+        return new BoardSize(Integer.valueOf(boardSizeText), Integer.valueOf(boardSizeText));
     }
 
     int interpretWinningSigns(String winningSignsText) {

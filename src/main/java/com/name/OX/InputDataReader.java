@@ -39,8 +39,6 @@ class InputDataReader {
             String size;
             try {
                 size = scanner.nextLine();
-                size += ",";
-                size += scanner.nextLine();
                 if(!checkIfSizeIsGood(size)){
                     throw new BoardSizeException("Board must be grater than 3 and lower than 100");
                 }
@@ -57,9 +55,7 @@ class InputDataReader {
     }
 
     private boolean checkIfSizeIsGood(String size) {
-        String[] splitSize = size.split(",");
-        if (Integer.valueOf(splitSize[0]) < 3 || Integer.valueOf(splitSize[0]) > 100
-                || Integer.valueOf(splitSize[1]) < 3 || Integer.valueOf(splitSize[1]) > 100){
+        if (Integer.valueOf(size) < 3 || Integer.valueOf(size) > 100){
             return false;
         }
         return true;
@@ -86,6 +82,7 @@ class InputDataReader {
     }
 
     private boolean checkIfWinningSignsAreGood(String winningSigns) {
+        //TODO: check if winning signs are lower than board size
         if (Integer.valueOf(winningSigns) < 3){
             return false;
         }
