@@ -66,6 +66,29 @@ class InputDataReader {
     }
 
     String readWinningSigns() {
-        return scanner.nextLine();
+        while (true) {
+            String winningSigns;
+            try {
+                winningSigns = scanner.nextLine();
+                if(!checkIfWinningSignsAreGood(winningSigns)){
+                    throw new WinningSignsException("Number of winning signs must be greater than 3 and lower than board size");
+                }
+                return winningSigns;
+            } catch (WinningSignsException e) {
+                //TODO: add displayer with question
+                winningSigns = readWinningSigns();
+            } catch (NumberFormatException e){
+                //TODO: add displayer message (only number)
+                winningSigns = readWinningSigns();
+            }
+            return winningSigns;
+        }
+    }
+
+    private boolean checkIfWinningSignsAreGood(String winningSigns) {
+        if (Integer.valueOf(winningSigns) < 3){
+            return false;
+        }
+        return true;
     }
 }
