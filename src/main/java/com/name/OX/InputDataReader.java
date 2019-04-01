@@ -14,7 +14,19 @@ class InputDataReader {
     }
 
     String readLanguage() {
-        return scanner.nextLine();
+        while (true) {
+            String language = "";
+            try {
+                language = scanner.nextLine();
+                if (!AvailableLanguage.compareLanguage(language)) {
+                    throw new NotAvailableLanguageException("Must choose available language only");
+                }
+                return language;
+            } catch (NotAvailableLanguageException e) {
+                language = readLanguage();
+            }
+            return language;
+        }
     }
 
     String readPlayer() {
