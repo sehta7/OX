@@ -9,6 +9,7 @@ class NaughtRound implements Round {
     private Player currentPlayer;
     private Player nextPlayer;
     private BoardDrawer boardDrawer;
+    private Judge judge;
 
     public NaughtRound(Board board, Player currentPlayer, Player nextPlayer, BoardDrawer boardDrawer) {
         this.board = board;
@@ -24,7 +25,12 @@ class NaughtRound implements Round {
         Move move = new Move(chosenField, currentPlayer);
         move.addObserver(boardDrawer);
         move.notifyAllObservers();
-        return new CrossRound(board, nextPlayer, currentPlayer, boardDrawer);
+        //TODO: check winning sequence
+        if (judge.foundWinner()){
+            return new FinishState();
+        } else{
+            return new CrossRound(board, nextPlayer, currentPlayer, boardDrawer);
+        }
     }
 
     @Override
