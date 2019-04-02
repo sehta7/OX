@@ -41,7 +41,20 @@ class DP {
     @DataProvider
     public static Object[][] player(){
         return new Object[][]{
-                //TODO: iterate over AvailableLanguage enum
+                {randomString()},
+                {randomString()},
+                {randomString()},
+                {randomString()},
+                {randomString()},
+                {randomString()},
+                {randomString()},
+                {randomString()}
+        };
+    }
+
+    @DataProvider
+    public static Object[][] languageName(){
+        return new Object[][]{
                 {randomString()},
                 {randomString()},
                 {randomString()},
