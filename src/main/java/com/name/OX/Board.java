@@ -11,12 +11,12 @@ import java.util.Map;
 class Board {
 
     private int boardSize;
-    private Map<Integer, Player> occupiedFields;
+    private List<Move> occupiedFields;
     private List<Integer> emptyFields;
 
     Board(int boardSize){
         this.boardSize = boardSize;
-        occupiedFields = new HashMap<>();
+        occupiedFields = new ArrayList<>();
         emptyFields = new ArrayList<>();
     }
 
@@ -31,11 +31,7 @@ class Board {
         return boardSize;
     }
 
-    boolean areFieldsToDraw(){
-        return (!occupiedFields.isEmpty());
-    }
-
-    Map<Integer, Player> getOccupiedFields(){
+    List<Move> getOccupiedFields(){
         return occupiedFields;
     }
 }

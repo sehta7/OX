@@ -1,50 +1,74 @@
 package com.name.OX;
 
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Map;
+import java.util.List;
 
 /**
  * @author Ola Podorska
  */
-class BoardDrawer {
+class BoardDrawer implements Observer {
 
     private Board board;
+    private List<Move> moves = new ArrayList<>();
 
     BoardDrawer(Board board) {
         this.board = board;
     }
 
     //TODO: refactor!!
-    void drawBoard(Board board){
-        this.board = board;
+    void drawBoard() {
         int boardSize = board.getBoardSize();
-        for (int i = 1; i <= boardSize * boardSize; i ++){
+        for (int i = 1; i <= boardSize * boardSize; i++) {
             System.out.print("| ");
-            if (board.areFieldsToDraw()){
-                drawPlayerSymbols(board, i);
+            if (!moves.isEmpty()) {
+                Move move = findMoveToDraw(i);
+                if (move != null){
+                    drawPlayerSymbols(move);
+                } else {
+                    if (i >= 10){
+                        System.out.print(" " + i + " ");
+                    } else {
+                        System.out.print(" " + i + "  ");
+                    }
+                }
             } else{
-                System.out.print("" + i);
+                if (i >= 10){
+                    System.out.print(" " + i + " ");
+                } else {
+                    System.out.print(" " + i + "  ");
+                }
             }
-            System.out.print(" ");
-            if (i%boardSize == 0){
+            if (i % boardSize == 0) {
                 System.out.print("|");
                 System.out.println();
-                String pause = " ---";
-                System.out.println(String.join("", Collections.nCopies(3, pause)));
+                String pause = " -----";
+                System.out.println(String.join("", Collections.nCopies(boardSize, pause)));
             }
         }
     }
 
-    private void drawPlayerSymbols(Board board, int i) {
-        for (Map.Entry<Integer, Player> entry : board.getOccupiedFields().entrySet()
-             ) {
-            if (entry.getKey() == i){
-                if (entry.getValue().whichSymbolIsUse().equals(Symbol.CROSS)){
-                    System.out.print("X");
-                } else{
-                    System.out.print("O");
-                }
+    private Move findMoveToDraw(int i) {
+        for (Move move : moves
+        ) {
+            if (move.getField() == i) {
+                return move;
             }
         }
+        return null;
+    }
+
+    private void drawPlayerSymbols(Move move) {
+        if (move.checkPlayer().equals(Symbol.CROSS)) {
+            System.out.print(" X  ");
+        } else {
+            System.out.print(" O  ");
+        }
+    }
+
+    @Override
+    public void update(Move move) {
+        moves.add(move);
+        drawBoard();
     }
 }
