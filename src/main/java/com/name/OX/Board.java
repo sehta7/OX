@@ -1,7 +1,9 @@
 package com.name.OX;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Ola Podorska
@@ -9,12 +11,12 @@ import java.util.List;
 class Board {
 
     private int boardSize;
-    private List<Integer> occupiedFields;
+    private Map<Integer, Player> occupiedFields;
     private List<Integer> emptyFields;
 
     Board(int boardSize){
         this.boardSize = boardSize;
-        occupiedFields = new ArrayList<>();
+        occupiedFields = new HashMap<>();
         emptyFields = new ArrayList<>();
     }
 
@@ -23,5 +25,17 @@ class Board {
             emptyFields.add(i);
         }
         return this;
+    }
+
+    int getBoardSize(){
+        return boardSize;
+    }
+
+    boolean areFieldsToDraw(){
+        return (!occupiedFields.isEmpty());
+    }
+
+    Map<Integer, Player> getOccupiedFields(){
+        return occupiedFields;
     }
 }
