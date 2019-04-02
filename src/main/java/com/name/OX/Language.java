@@ -12,4 +12,8 @@ class Language {
         this.name = name;
     }
 
+    String whatLanguage(){
+        return name;
+    }
+
 }

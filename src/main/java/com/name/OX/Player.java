@@ -10,4 +10,8 @@ class Player {
     Player(String playerName) {
         name = playerName;
     }
+
+    String whichPlayer(){
+        return name;
+    }
 }
