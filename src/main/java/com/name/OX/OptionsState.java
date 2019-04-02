@@ -30,7 +30,7 @@ class OptionsState implements GameState {
     }
 
     @Override
-    public void whichState() {
-        System.out.println(GameStateName.OPTIONS);
+    public GameStateName whichState() {
+        return GameStateName.OPTIONS;
     }
 }
