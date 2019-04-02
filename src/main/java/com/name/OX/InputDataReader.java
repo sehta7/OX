@@ -88,4 +88,8 @@ class InputDataReader {
         }
         return true;
     }
+
+    String readField() {
+        return scanner.nextLine();
+    }
 }

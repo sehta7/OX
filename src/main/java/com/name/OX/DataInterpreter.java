@@ -1,5 +1,7 @@
 package com.name.OX;
 
+import java.util.Scanner;
+
 /**
  * @author Ola Podorska
  */
@@ -9,16 +11,20 @@ class DataInterpreter {
         return new Language(languageText);
     }
 
-    Player interpretPlayers(String playerText) {
-        Player player = new Player(playerText);
+    Player interpretPlayers(String playerText, Scanner scanner) {
+        Player player = new Player(playerText, scanner);
         return player;
     }
 
     int interpretBoardSize(String boardSizeText) {
-        return Integer.valueOf(boardSizeText);
+        return Integer.parseInt(boardSizeText);
     }
 
     int interpretWinningSigns(String winningSignsText) {
         return Integer.parseInt(winningSignsText);
+    }
+
+    public int interpretField(String fieldText) {
+        return Integer.parseInt(fieldText);
     }
 }

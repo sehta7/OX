@@ -19,7 +19,7 @@ class Board {
     }
 
     Board initialize(){
-        for (int i = 0; i < boardSize * 2; i++){
+        for (int i = 0; i < boardSize * boardSize; i++){
             emptyFields.add(i);
         }
         return this;

@@ -23,13 +23,14 @@ class StartState implements GameState {
 
     private GameState playMatches(int gameMatches) {
         Round round = null;
-        for (int i = counter; i < gameMatches; i++){
-            if (i%2 == 1){
-                round = new NaughtRound(board, gameOptions.whoPlays());
+        if (counter < gameMatches){
+            if (counter%2 == 0){
+                round = new NaughtRound(board, gameOptions.whoPlays().findNaught(), gameOptions.whoPlays().findCross());
             } else{
-                round = new CrossRound(board, gameOptions.whoPlays());
+                round = new CrossRound(board, gameOptions.whoPlays().findCross(), gameOptions.whoPlays().findNaught());
             }
         }
+        counter++;
         return round;
     }
 

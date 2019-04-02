@@ -7,15 +7,20 @@ class NaughtRound implements Round {
 
     private Board board;
     private Player currentPlayer;
+    private Player nextPlayer;
 
-    public NaughtRound(Board board, Players players) {
+    public NaughtRound(Board board, Player currentPlayer, Player nextPlayer) {
         this.board = board;
-        currentPlayer = players.findNaught();
+        this.currentPlayer = currentPlayer;
+        this.nextPlayer = nextPlayer;
     }
 
     @Override
     public GameState nextState() {
-        return null;
+        //TODO: question
+        int chosenField = currentPlayer.choseField();
+        Move move = new Move(chosenField, currentPlayer);
+        return new CrossRound(board, nextPlayer, currentPlayer);
     }
 
     @Override

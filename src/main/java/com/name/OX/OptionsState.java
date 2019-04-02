@@ -20,8 +20,8 @@ class OptionsState implements GameState {
         InputDataReader inputDataReader = new InputDataReader(scanner);
         DataInterpreter dataInterpreter = new DataInterpreter();
         Language language = dataInterpreter.interpretLanguage(inputDataReader.readLanguage());
-        Player naughtPlayer = dataInterpreter.interpretPlayers(inputDataReader.readPlayer());
-        Player crossPlayer = dataInterpreter.interpretPlayers(inputDataReader.readPlayer());
+        Player naughtPlayer = dataInterpreter.interpretPlayers(inputDataReader.readPlayer(), scanner);
+        Player crossPlayer = dataInterpreter.interpretPlayers(inputDataReader.readPlayer(), scanner);
         int boardSize = dataInterpreter.interpretBoardSize(inputDataReader.readBoardSize());
         int winningSigns = dataInterpreter.interpretWinningSigns(inputDataReader.readWinningSigns());
         gameOptions.configure(language, new Players(naughtPlayer, crossPlayer), boardSize, winningSigns);

@@ -2,7 +2,7 @@ package com.name.OX;
 
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.*;
+import java.util.Scanner;
 
 /**
  * @author Ola Podorska
@@ -13,7 +13,7 @@ public class PlayerTest {
 
     @Test(dataProviderClass = DP.class, dataProvider = "player")
     public void testIfPlayerReturnsItsName(String name) {
-        Player player = new Player(name);
+        Player player = new Player(name, new Scanner(System.in));
         assert (player.whichPlayer().equals(name)) : "Player does not know its name";
     }
 }

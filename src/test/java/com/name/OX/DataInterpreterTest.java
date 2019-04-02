@@ -2,6 +2,8 @@ package com.name.OX;
 
 import org.testng.annotations.Test;
 
+import java.util.Scanner;
+
 import static org.testng.Assert.*;
 
 /**
@@ -20,7 +22,7 @@ public class DataInterpreterTest {
     public void testIfCreateProperPlayer() {
         DataInterpreter dataInterpreter = new DataInterpreter();
         String playerName = "player";
-        Player player = dataInterpreter.interpretPlayers(playerName);
+        Player player = dataInterpreter.interpretPlayers(playerName, new Scanner(System.in));
         assert (player.whichPlayer().equals(playerName)) : "Does not save proper name of player";
     }
 
