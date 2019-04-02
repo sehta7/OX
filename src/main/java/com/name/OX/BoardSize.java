@@ -5,11 +5,13 @@ package com.name.OX;
  */
 class BoardSize {
 
-    private int length;
-    private int height;
+    private int dimension;
 
-    public BoardSize(int boardLength, int boardHeight) {
-        length = boardLength;
-        height = boardHeight;
+    public BoardSize(int dimension) {
+        this.dimension = dimension;
+    }
+
+    int whatSize(){
+        return dimension;
     }
 }
