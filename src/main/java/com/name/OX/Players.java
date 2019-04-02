@@ -13,4 +13,11 @@ class Players {
         this.crossPlayer = crossPlayer;
     }
 
+    Player findNaught() {
+        return naughtPlayer;
+    }
+
+    Player findCross() {
+        return crossPlayer;
+    }
 }

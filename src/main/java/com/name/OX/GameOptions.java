@@ -20,4 +20,8 @@ class GameOptions {
     int whatIsBoardSize(){
         return boardSize;
     }
+
+    Players whoPlays(){
+        return players;
+    }
 }
