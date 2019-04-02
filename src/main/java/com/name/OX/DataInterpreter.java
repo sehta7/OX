@@ -14,8 +14,8 @@ class DataInterpreter {
         return player;
     }
 
-    BoardSize interpretBoardSize(String boardSizeText) {
-        return new BoardSize(Integer.valueOf(boardSizeText));
+    int interpretBoardSize(String boardSizeText) {
+        return Integer.valueOf(boardSizeText);
     }
 
     int interpretWinningSigns(String winningSignsText) {

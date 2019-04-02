@@ -22,11 +22,11 @@ class OptionsState implements GameState {
         Language language = dataInterpreter.interpretLanguage(inputDataReader.readLanguage());
         Player naughtPlayer = dataInterpreter.interpretPlayers(inputDataReader.readPlayer());
         Player crossPlayer = dataInterpreter.interpretPlayers(inputDataReader.readPlayer());
-        BoardSize boardSize = dataInterpreter.interpretBoardSize(inputDataReader.readBoardSize());
+        int boardSize = dataInterpreter.interpretBoardSize(inputDataReader.readBoardSize());
         int winningSigns = dataInterpreter.interpretWinningSigns(inputDataReader.readWinningSigns());
         gameOptions.configure(language, new Players(naughtPlayer, crossPlayer), boardSize, winningSigns);
         System.out.println(gameOptions);
-        return null;
+        return new StartState(gameOptions);
     }
 
     @Override

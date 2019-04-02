@@ -27,7 +27,7 @@ public class DataInterpreterTest {
     @Test(dataProviderClass = DP.class, dataProvider = "boardSize")
     public void testIfSaveProperSizeBoard(String size){
         DataInterpreter dataInterpreter = new DataInterpreter();
-        BoardSize boardSize = dataInterpreter.interpretBoardSize(size);
-        assert (String.valueOf(boardSize.whatSize()).equals(size)) : "Does not save proper size of board";
+        int boardSize = dataInterpreter.interpretBoardSize(size);
+        assert (String.valueOf(boardSize).equals(size)) : "Does not save proper size of board";
     }
 }
