@@ -8,6 +8,7 @@ import java.util.Scanner;
 class InputDataReader {
 
     private Scanner scanner;
+    private int boardSize;
 
     InputDataReader(Scanner scanner) {
         this.scanner = scanner;
@@ -42,14 +43,18 @@ class InputDataReader {
                 if(!checkIfSizeIsGood(size)){
                     throw new BoardSizeException("Board must be grater than 3 and lower than 100");
                 }
+                boardSize = Integer.valueOf(size);
                 return size;
             } catch (BoardSizeException e) {
                 //TODO: add displayer with question
                 size = readBoardSize();
+                boardSize = Integer.valueOf(size);
             } catch (NumberFormatException e){
                 //TODO: add displayer message (only number)
                 size = readBoardSize();
+                boardSize = Integer.valueOf(size);
             }
+            boardSize = Integer.valueOf(size);
             return size;
         }
     }
@@ -90,6 +95,24 @@ class InputDataReader {
     }
 
     String readField() {
-        return scanner.nextLine();
+        while (true){
+            String field;
+            try{
+                field = scanner.nextLine();
+                if(!checkIfFieldIsGood(field)){
+                    throw new BadFieldException("Field must be on the board.");
+                }
+                return field;
+            } catch (BadFieldException e) {
+                field = readField();
+            }catch (NumberFormatException e){
+                field = readField();
+            }
+            return field;
+        }
+    }
+
+    private boolean checkIfFieldIsGood(String field) {
+        return Integer.valueOf(field) > (boardSize * boardSize);
     }
 }
