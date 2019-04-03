@@ -10,13 +10,15 @@ class NaughtRound implements Round {
     private BoardDrawer boardDrawer;
     private Judge judge;
     private GameOptions gameOptions;
+    private int counter;
 
-    public NaughtRound(Board board, GameOptions gameOptions, BoardDrawer boardDrawer, Judge judge) {
+    public NaughtRound(Board board, GameOptions gameOptions, BoardDrawer boardDrawer, Judge judge, int counter) {
         this.board = board;
         this.boardDrawer = boardDrawer;
         this.gameOptions = gameOptions;
         this.judge = judge;
         currentPlayer = gameOptions.whoIsNaught();
+        this.counter = counter;
     }
 
     @Override
@@ -30,9 +32,9 @@ class NaughtRound implements Round {
         //TODO: check winning sequence
         if (judge.foundWinner() != null){
             System.out.println("Winner");
-            return new FinishState();
+            return new StartState(gameOptions, ++counter);
         } else{
-            return new CrossRound(board, gameOptions, boardDrawer, judge);
+            return new CrossRound(board, gameOptions, boardDrawer, judge, counter);
         }
     }
 

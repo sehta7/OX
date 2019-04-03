@@ -9,29 +9,25 @@ class StartState implements GameState {
     private int counter;
     private Board board;
 
-    StartState(GameOptions gameOptions) {
+    StartState(GameOptions gameOptions, int counter) {
         this.gameOptions = gameOptions;
-        counter = 0;
+        this.counter = counter;
         board = new Board(gameOptions.whatIsBoardSize());
         board.initialize();
     }
 
     @Override
     public GameState nextState() {
-        return playMatches(3);
-    }
-
-    private GameState playMatches(int gameMatches) {
-        Round round = null;
-        if (counter < gameMatches){
-            if (counter%2 == 0){
-                round = new NaughtRound(board, gameOptions, new BoardDrawer(board), new Judge(gameOptions));
-            } else{
-                round = new CrossRound(board, gameOptions, new BoardDrawer(board), new Judge(gameOptions));
+        if (counter < 3){
+            Round round;
+            if (counter % 2 == 0) {
+                round = new NaughtRound(board, gameOptions, new BoardDrawer(board), new Judge(gameOptions), counter);
+            } else {
+                round = new CrossRound(board, gameOptions, new BoardDrawer(board), new Judge(gameOptions), counter);
             }
+            return round;
         }
-        counter++;
-        return round;
+        return new FinishState();
     }
 
     @Override

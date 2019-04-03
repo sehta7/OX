@@ -10,12 +10,14 @@ class CrossRound implements Round {
     private BoardDrawer boardDrawer;
     private Judge judge;
     private GameOptions gameOptions;
+    private int counter;
 
-    public CrossRound(Board board, GameOptions gameOptions, BoardDrawer boardDrawer, Judge judge) {
+    public CrossRound(Board board, GameOptions gameOptions, BoardDrawer boardDrawer, Judge judge, int counter) {
         this.board = board;
         this.boardDrawer = boardDrawer;
         this.gameOptions = gameOptions;
         this.judge = judge;
+        this.counter = counter;
         currentPlayer = gameOptions.whoIsCross();
     }
 
@@ -29,9 +31,9 @@ class CrossRound implements Round {
         move.notifyAllObservers();
         if (judge.foundWinner() != null){
             System.out.println("Winner");
-            return new FinishState();
+            return new StartState(gameOptions, ++counter);
         } else {
-            return new NaughtRound(board, gameOptions, boardDrawer, judge);
+            return new NaughtRound(board, gameOptions, boardDrawer, judge, counter);
         }
     }
 
