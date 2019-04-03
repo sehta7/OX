@@ -9,19 +9,31 @@ class GameOptions {
     private Players players;
     private int boardSize;
     private int winningSigns;
+    private Player naughtPlayer;
+    private Player crossPlayer;
 
     void configure(Language language, Players players, int boardSize, int winningSigns) {
         this.language = language;
         this.players = players;
         this.boardSize = boardSize;
         this.winningSigns = winningSigns;
+        naughtPlayer = players.findNaught();
+        crossPlayer = players.findCross();
     }
 
     int whatIsBoardSize(){
         return boardSize;
     }
 
-    Players whoPlays(){
-        return players;
+    int howManySignsWin(){
+        return winningSigns;
+    }
+
+    Player whoIsNaught(){
+        return naughtPlayer;
+    }
+
+    Player whoIsCross(){
+        return crossPlayer;
     }
 }

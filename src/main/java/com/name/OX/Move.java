@@ -17,21 +17,44 @@ class Move {
         this.whoseMove = whoseMove;
     }
 
-    void addObserver(Observer observer){
+    void addObserver(Observer observer) {
         observers.add(observer);
     }
 
-    void notifyAllObservers(){
+    void notifyAllObservers() {
         for (Observer observer : observers) {
             observer.update(this);
         }
     }
 
-    int getField(){
+    int getField() {
         return chosenField;
     }
 
     Symbol checkPlayer() {
         return whoseMove.whichSymbolIsUse();
+    }
+
+    public boolean hasEnoughNeighbours(List<Move> moves, int winningSigns) {
+        List<Move> winningSequence = new ArrayList<>();
+        int index = moves.indexOf(this);
+        int toCheck = winningSigns;
+        boolean hasEnoughNeighbours = false;
+        if (moves.size() < winningSigns) {
+            return false;
+        }
+        if (index <= (moves.size() - winningSigns)) {
+            for (int i = 0; i < winningSigns; i++) {
+                if (moves.get(index + i).chosenField == (this.chosenField + i)) {
+                    //TODO: remove not good sequences
+                    winningSequence.add(moves.get(index + i));
+                    toCheck--;
+                }
+            }
+        }
+        if (toCheck == 0) {
+            hasEnoughNeighbours = true;
+        }
+        return hasEnoughNeighbours;
     }
 }

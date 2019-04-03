@@ -25,9 +25,9 @@ class StartState implements GameState {
         Round round = null;
         if (counter < gameMatches){
             if (counter%2 == 0){
-                round = new NaughtRound(board, gameOptions.whoPlays().findNaught(), gameOptions.whoPlays().findCross(), new BoardDrawer(board));
+                round = new NaughtRound(board, gameOptions, new BoardDrawer(board), new Judge(gameOptions));
             } else{
-                round = new CrossRound(board, gameOptions.whoPlays().findCross(), gameOptions.whoPlays().findNaught(), new BoardDrawer(board));
+                round = new CrossRound(board, gameOptions, new BoardDrawer(board), new Judge(gameOptions));
             }
         }
         counter++;
