@@ -35,7 +35,7 @@ class Move {
         return whoseMove.whichSymbolIsUse();
     }
 
-    public boolean hasEnoughNeighbours(List<Move> moves, int winningSigns) {
+    public boolean hasEnoughNeighbours(List<Move> moves, int winningSigns, Border border) {
         List<Move> winningSequence = new ArrayList<>();
         int index = moves.indexOf(this);
         int toCheck = winningSigns;
@@ -46,7 +46,9 @@ class Move {
         if (index <= (moves.size() - winningSigns)) {
             for (int i = 0; i < winningSigns; i++) {
                 if (moves.get(index + i).chosenField == (this.chosenField + i)) {
-                    //TODO: remove not good sequences
+                    if (border.isPassed(moves.get(index + i))){
+                        return false;
+                    }
                     winningSequence.add(moves.get(index + i));
                     toCheck--;
                 }

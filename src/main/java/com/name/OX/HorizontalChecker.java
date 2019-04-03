@@ -9,9 +9,11 @@ import java.util.List;
 class HorizontalChecker implements Checker{
 
     private GameOptions gameOptions;
+    private Border border;
 
     public HorizontalChecker(GameOptions gameOptions) {
         this.gameOptions = gameOptions;
+        border = new Border(gameOptions.whatIsBoardSize());
     }
 
     private List<Integer> initialize() {
@@ -31,7 +33,7 @@ class HorizontalChecker implements Checker{
 
         for (Move move: moves
              ) {
-            if (move.hasEnoughNeighbours(moves, winningSigns)){
+            if (move.hasEnoughNeighbours(moves, winningSigns, border)){
                 //TODO: check sequence in two rows
                 //if ((move.getField() + winningSigns - 1)%boardSize == 0 ){
                     return true;
