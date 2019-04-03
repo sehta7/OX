@@ -20,22 +20,26 @@ class BoardDrawer implements Observer {
     void drawBoard() {
         int boardSize = board.getBoardSize();
         for (int i = 1; i <= boardSize * boardSize; i++) {
-            System.out.print("| ");
+            System.out.print("|");
             if (!moves.isEmpty()) {
                 Move move = findMoveToDraw(i);
                 if (move != null){
                     drawPlayerSymbols(move);
                 } else {
-                    if (i >= 10){
+                    if (i >= 10 && i < 100){
+                        System.out.print("  " + i + " ");
+                    } else if(i >= 100) {
                         System.out.print(" " + i + " ");
-                    } else {
-                        System.out.print(" " + i + "  ");
+                    } else if(i < 10){
+                        System.out.print("  " + i + "  ");
                     }
                 }
             } else{
                 if (i >= 10){
                     System.out.print(" " + i + " ");
-                } else {
+                } else if(i >= 100) {
+                    System.out.print("" + i + "");
+                } else{
                     System.out.print(" " + i + "  ");
                 }
             }
@@ -60,9 +64,9 @@ class BoardDrawer implements Observer {
 
     private void drawPlayerSymbols(Move move) {
         if (move.checkPlayer().equals(Symbol.CROSS)) {
-            System.out.print(" X  ");
+            System.out.print("  X  ");
         } else {
-            System.out.print(" O  ");
+            System.out.print("  O  ");
         }
     }
 
