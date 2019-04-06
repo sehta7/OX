@@ -1,0 +1,6 @@
+
+>squid:S2189""Add an end condition to this loop.(˜ïˆžÿÿÿÿÿ
+@squid:S3010")Remove this assignment of "currentState".(¨“ÍÎ
+Isquid:S1481"-Remove this unused "gameMain" local variable.(ñß«”ûÿÿÿÿ
+Lsquid:S2209"5Change this instance-reference to a static reference.(¨“ÍÎ
+wsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ŠŽ¡²ûÿÿÿÿ

@@ -19,6 +19,7 @@ class Judge implements Observer {
         this.gameOptions = gameOptions;
     }
 
+    //TODO:: public?
     public Symbol foundWinner() {
         return winner;
     }
@@ -26,24 +27,25 @@ class Judge implements Observer {
     @Override
     public void update(Move move) {
         boolean horizontal;
-        if (move.checkPlayer().equals(Symbol.CROSS)){
+        if(move.checkPlayer().equals(Symbol.CROSS)) {
             crossMoves.add(move);
             crossMoves.sort(new MoveComparator());
             checker = new HorizontalChecker(gameOptions);
             horizontal = checker.checkIfWin(crossMoves);
-        } else{
+        } else {
             naughtMoves.add(move);
             naughtMoves.sort(new MoveComparator());
             checker = new HorizontalChecker(gameOptions);
             horizontal = checker.checkIfWin(naughtMoves);
         }
+        //TODO:: sprwadzanie pozostalych tj. diagonal + vertical
         /*checker = new VerticalChecker();
         boolean vertical = checker.checkIfWin(crossMoves);
         checker = new DiagonalChecker();
         boolean diagonal = checker.checkIfWin(crossMoves);*/
         boolean vertical = false;
         boolean diagonal = false;
-        if (horizontal || vertical ||diagonal){
+        if(horizontal || vertical || diagonal) {
             winner = move.checkPlayer();
         }
     }

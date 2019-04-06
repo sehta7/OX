@@ -18,9 +18,10 @@ class StartState implements GameState {
 
     @Override
     public GameState nextState() {
-        if (counter < 3){
+        if(counter < 3) {
             Round round;
-            if (counter % 2 == 0) {
+            //TODO:: Co jezeli ktos chcialby zeby X zaczynal gre?
+            if(counter % 2 == 0) {
                 round = new NaughtRound(board, gameOptions, new BoardDrawer(board), new Judge(gameOptions), counter);
             } else {
                 round = new CrossRound(board, gameOptions, new BoardDrawer(board), new Judge(gameOptions), counter);

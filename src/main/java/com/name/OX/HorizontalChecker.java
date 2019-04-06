@@ -11,6 +11,7 @@ class HorizontalChecker implements Checker {
     private GameOptions gameOptions;
     private Border border;
 
+    //TODO:: public?
     public HorizontalChecker(GameOptions gameOptions) {
         this.gameOptions = gameOptions;
         border = new Border(gameOptions.whatIsBoardSize());
@@ -22,7 +23,7 @@ class HorizontalChecker implements Checker {
 
         for (Move move : moves
         ) {
-            if (hasEnoughNeighbours(move, moves, winningSigns)) {
+            if(hasEnoughNeighbours(move, moves, winningSigns)) {
                 //TODO: check sequence in two rows
                 return true;
             }
@@ -36,13 +37,13 @@ class HorizontalChecker implements Checker {
         int index = moves.indexOf(move);
         int toCheck = winningSigns;
         boolean hasEnoughNeighbours = false;
-        if (moves.size() < winningSigns) {
+        if(moves.size() < winningSigns) {
             return false;
         }
-        if (index <= (moves.size() - winningSigns)) {
+        if(index <= (moves.size() - winningSigns)) {
             for (int i = 0; i < winningSigns; i++) {
-                if (moves.get(index + i).getField() == (move.getField() + i)) {
-                    if (border.isPassed(moves.get(index + i))) {
+                if(moves.get(index + i).getField() == (move.getField() + i)) {
+                    if(border.isPassed(moves.get(index + i))) {
                         return false;
                     }
                     winningSequence.add(moves.get(index + i));
@@ -50,7 +51,7 @@ class HorizontalChecker implements Checker {
                 }
             }
         }
-        if (toCheck == 0) {
+        if(toCheck == 0) {
             hasEnoughNeighbours = true;
         }
         return hasEnoughNeighbours;

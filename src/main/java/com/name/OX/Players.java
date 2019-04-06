@@ -8,6 +8,7 @@ class Players {
     private Player naughtPlayer;
     private Player crossPlayer;
 
+    //TODO:: public?
     public Players(Player naughtPlayer, Player crossPlayer) {
         this.naughtPlayer = naughtPlayer;
         this.crossPlayer = crossPlayer;

@@ -15,7 +15,8 @@ class GameMain {
 
     public static void main(String[] args) {
         GameMain gameMain = new GameMain(new OptionsState(new GameOptions(), new Scanner(System.in)));
-        while (true){
+        //TODO:: może while(currentState.whichState() różne od FINISH)?
+        while (true) {
             currentState = currentState.nextState();
         }
     }
