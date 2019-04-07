@@ -32,30 +32,36 @@ class HorizontalChecker implements Checker {
     }
 
     private boolean hasEnoughNeighbours(Move move, List<Move> moves, int winningSigns) {
-        List<Move> winningSequence = new ArrayList<>();
         int index = moves.indexOf(move);
-        int toCheck = winningSigns;
+        int toCheck = winningSigns - 1;
         boolean hasEnoughNeighbours = false;
         if (moves.size() < winningSigns) {
             return false;
         }
         if (index <= (moves.size() - winningSigns)) {
-            for (int i = 0; i < winningSigns; i++) {
-                if (moves.get(index + i).getField() == (move.getField() + i)) {
-                    if (i != winningSigns - 1){
-                        if (border.isPassed(moves.get(index + i))) {
-                            return false;
-                        }
-                    }
-                    winningSequence.add(moves.get(index + i));
+            Move current = moves.get(index);
+            for (int i = 0; i < winningSigns - 1; i++) {
+                Move next = hasNext(current, moves);
+                if (!current.equals(next)) {
                     toCheck--;
                 }
+                current = next;
             }
         }
         if (toCheck == 0) {
             hasEnoughNeighbours = true;
         }
         return hasEnoughNeighbours;
+    }
+
+    private Move hasNext(Move field, List<Move> moves) {
+        for (Move move : moves
+        ) {
+            if ((field.getField() + 1) == move.getField()) {
+                return move;
+            }
+        }
+        return field;
     }
 
 }
