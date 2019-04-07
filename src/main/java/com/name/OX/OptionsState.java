@@ -19,12 +19,19 @@ class OptionsState implements GameState {
     public GameState nextState() {
         InputDataReader inputDataReader = new InputDataReader(scanner);
         DataInterpreter dataInterpreter = new DataInterpreter();
+        Displayer displayer = new Displayer(new Language("en"));
+        displayer.displayQuestionAboutLanguage();
         Language language = dataInterpreter.interpretLanguage(inputDataReader.readLanguage());
+        displayer = new Displayer(language);
+        displayer.displayQuestionWhoStarts();
         Player naughtPlayer = dataInterpreter.interpretPlayers(inputDataReader.readPlayer(), scanner);
         naughtPlayer.setSymbol(Symbol.NAUGHT);
+        displayer.displayQuestionAboutPlayer();
         Player crossPlayer = dataInterpreter.interpretPlayers(inputDataReader.readPlayer(), scanner);
         crossPlayer.setSymbol(Symbol.CROSS);
+        displayer.displayQuestionAboutBoardSize();
         int boardSize = dataInterpreter.interpretBoardSize(inputDataReader.readBoardSize());
+        displayer.displayQuestionAboutWinningSigns();
         int winningSigns = dataInterpreter.interpretWinningSigns(inputDataReader.readWinningSigns());
         gameOptions.configure(language, new Players(naughtPlayer, crossPlayer), boardSize, winningSigns);
         return new StartState(gameOptions, 0);
