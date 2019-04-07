@@ -18,7 +18,7 @@ class GameFromFileMain {
     public static void main(String[] args) {
         File file = new File("C:\\Users\\Olka\\Desktop\\4_3_h.txt");
         try {
-            GameFromFileMain gameMain = new GameFromFileMain(new OptionsState(new GameOptions(), new Scanner(file)));
+            GameFromFileMain gameMain = new GameFromFileMain(new OptionsFromFileState(new GameOptions(), new Scanner(file)));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
