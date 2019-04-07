@@ -11,7 +11,7 @@ class VerticalChecker implements Checker {
     private GameOptions gameOptions;
     private Border border;
 
-    public VerticalChecker(GameOptions gameOptions) {
+    VerticalChecker(GameOptions gameOptions) {
         this.gameOptions = gameOptions;
         border = new Border(gameOptions.whatIsBoardSize());
     }
@@ -32,22 +32,20 @@ class VerticalChecker implements Checker {
     }
 
     private boolean hasEnoughNeighbours(Move move, List<Move> moves, int winningSigns) {
-        List<Move> winningSequence = new ArrayList<>();
         int index = moves.indexOf(move);
-        int toCheck = winningSigns;
+        int toCheck = winningSigns - 1;
         boolean hasEnoughNeighbours = false;
         if (moves.size() < winningSigns) {
             return false;
         }
         if (index <= (moves.size() - winningSigns)) {
-            for (int i = 0; i < winningSigns; i++) {
-                if (moves.get(index + i).getField() == (move.getField() + i)) {
-                    if (border.isPassed(moves.get(index + i))) {
-                        return false;
-                    }
-                    winningSequence.add(moves.get(index + i));
+            Move current = moves.get(index);
+            for (int i = 0; i < winningSigns - 1; i++) {
+                Move next = hasNext(current, moves);
+                if (!current.equals(next)) {
                     toCheck--;
                 }
+                current = next;
             }
         }
         if (toCheck == 0) {
@@ -56,13 +54,13 @@ class VerticalChecker implements Checker {
         return hasEnoughNeighbours;
     }
 
-    private boolean hasNext(int field, List<Move> moves){
-        for (Move move: moves
-             ) {
-            if ((field + gameOptions.whatIsBoardSize()) == move.getField()){
-                return true;
+    private Move hasNext(Move field, List<Move> moves) {
+        for (Move move : moves
+        ) {
+            if ((field.getField() + gameOptions.whatIsBoardSize()) == move.getField()) {
+                return move;
             }
         }
-        return false;
+        return field;
     }
 }
