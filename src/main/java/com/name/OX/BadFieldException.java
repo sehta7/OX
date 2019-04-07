@@ -5,7 +5,7 @@ package com.name.OX;
  */
 class BadFieldException extends Exception {
 
-    public BadFieldException(String message) {
+    BadFieldException(String message) {
         super(message);
     }
 }

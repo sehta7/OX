@@ -15,7 +15,7 @@ class GameMain {
 
     public static void main(String[] args) {
         GameMain gameMain = new GameMain(new OptionsState(new GameOptions(), new Scanner(System.in)));
-        while (true){
+        while (!currentState.whichState().equals(GameStateName.FINISH)){
             currentState = currentState.nextState();
         }
     }

@@ -5,7 +5,7 @@ package com.name.OX;
  */
 class BoardSizeException extends Exception{
 
-    public BoardSizeException(String message) {
+    BoardSizeException(String message) {
         super(message);
     }
 }

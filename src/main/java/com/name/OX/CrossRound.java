@@ -12,7 +12,7 @@ class CrossRound implements Round {
     private GameOptions gameOptions;
     private int counter;
 
-    public CrossRound(Board board, GameOptions gameOptions, BoardDrawer boardDrawer, Judge judge, int counter) {
+    CrossRound(Board board, GameOptions gameOptions, BoardDrawer boardDrawer, Judge judge, int counter) {
         this.board = board;
         this.boardDrawer = boardDrawer;
         this.gameOptions = gameOptions;

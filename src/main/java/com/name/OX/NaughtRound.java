@@ -12,7 +12,7 @@ class NaughtRound implements Round {
     private GameOptions gameOptions;
     private int counter;
 
-    public NaughtRound(Board board, GameOptions gameOptions, BoardDrawer boardDrawer, Judge judge, int counter) {
+    NaughtRound(Board board, GameOptions gameOptions, BoardDrawer boardDrawer, Judge judge, int counter) {
         this.board = board;
         this.boardDrawer = boardDrawer;
         this.gameOptions = gameOptions;

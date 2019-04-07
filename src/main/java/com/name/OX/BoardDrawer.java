@@ -35,7 +35,7 @@ class BoardDrawer implements Observer {
                     }
                 }
             } else{
-                if (i >= 10){
+                if (i >= 10 && i < 100){
                     System.out.print(" " + i + " ");
                 } else if(i >= 100) {
                     System.out.print("" + i + "");

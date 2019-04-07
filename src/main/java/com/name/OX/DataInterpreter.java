@@ -12,8 +12,7 @@ class DataInterpreter {
     }
 
     Player interpretPlayers(String playerText, Scanner scanner) {
-        Player player = new Player(playerText, scanner);
-        return player;
+        return new Player(playerText, scanner);
     }
 
     int interpretBoardSize(String boardSizeText) {
@@ -24,7 +23,7 @@ class DataInterpreter {
         return Integer.parseInt(winningSignsText);
     }
 
-    public int interpretField(String fieldText) {
+    int interpretField(String fieldText) {
         return Integer.parseInt(fieldText);
     }
 }

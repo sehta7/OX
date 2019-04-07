@@ -19,7 +19,7 @@ class Judge implements Observer {
         this.gameOptions = gameOptions;
     }
 
-    public Symbol foundWinner() {
+    Symbol foundWinner() {
         return winner;
     }
 

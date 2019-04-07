@@ -11,7 +11,7 @@ class HorizontalChecker implements Checker {
     private GameOptions gameOptions;
     private Border border;
 
-    public HorizontalChecker(GameOptions gameOptions) {
+    HorizontalChecker(GameOptions gameOptions) {
         this.gameOptions = gameOptions;
         border = new Border(gameOptions.whatIsBoardSize());
     }

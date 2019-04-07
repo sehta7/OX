@@ -5,7 +5,7 @@ package com.name.OX;
  */
 class NotAvailableLanguageException extends Exception {
 
-    public NotAvailableLanguageException(String message) {
+    NotAvailableLanguageException(String message) {
         super(message);
     }
 }
