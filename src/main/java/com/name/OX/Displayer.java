@@ -36,9 +36,8 @@ class Displayer {
         System.out.println(language.getSentence("start"));
     }
 
-    //TODO: add scores
     void displayScore(Player player){
-        //System.out.println(player + " " + language.getSentence("score")  + " " + player.checkPoints() + " and win the round");
+        System.out.println(player + " " + language.getSentence("score")  + " " + player.checkPoints());
     }
 
     void displayWhoWin(Player player){

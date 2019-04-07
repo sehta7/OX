@@ -38,4 +38,20 @@ class GameOptions {
     }
 
     Language whatIsLanguage(){return language;}
+
+    public Players setPlayers() {
+        return players;
+    }
+
+    void saveScores(Player player) {
+        if (player.whichSymbolIsUse().equals(Symbol.CROSS)){
+            players.addScoresToCrossPlayer(player.checkPoints());
+        } else {
+            players.addScoresToNaughtPlayer(player.checkPoints());
+        }
+    }
+
+    Player whoWonGame(){
+        return players.whoWon();
+    }
 }

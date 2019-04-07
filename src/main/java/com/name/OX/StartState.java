@@ -27,7 +27,13 @@ class StartState implements GameState {
             }
             return round;
         }
+        Player gameWinner = findWinner();
+        System.out.println("Winner is " + gameWinner);
         return new FinishState();
+    }
+
+    private Player findWinner() {
+        return gameOptions.whoWonGame();
     }
 
     @Override

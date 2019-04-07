@@ -31,7 +31,9 @@ class NaughtRound implements Round {
         move.addObserver(judge);
         move.notifyAllObservers();
         if (judge.foundWinner() != null){
-            displayer.displayWhoWin(currentPlayer);
+            currentPlayer.win();
+            gameOptions.saveScores(currentPlayer);
+            displayer.displayScore(currentPlayer);
             displayer.displayNewRound();
             return new StartState(gameOptions, ++counter);
         } else{
