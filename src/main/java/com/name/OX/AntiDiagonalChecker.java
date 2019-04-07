@@ -5,11 +5,11 @@ import java.util.List;
 /**
  * @author Ola Podorska
  */
-class DiagonalChecker implements Checker {
+class AntiDiagonalChecker implements Checker {
 
     private GameOptions gameOptions;
 
-    DiagonalChecker(GameOptions gameOptions) {
+    AntiDiagonalChecker(GameOptions gameOptions) {
         this.gameOptions = gameOptions;
     }
 
@@ -19,7 +19,7 @@ class DiagonalChecker implements Checker {
 
         for (Move move : moves
         ) {
-            if (hasEnoughNeighboursInDiagonal(move, moves, winningSigns)) {
+            if (hasEnoughNeighboursInAntiDiagonal(move, moves, winningSigns)) {
                 return true;
             }
         }
@@ -27,7 +27,7 @@ class DiagonalChecker implements Checker {
         return false;
     }
 
-    private boolean hasEnoughNeighboursInDiagonal(Move move, List<Move> moves, int winningSigns) {
+    private boolean hasEnoughNeighboursInAntiDiagonal(Move move, List<Move> moves, int winningSigns) {
         int index = moves.indexOf(move);
         int toCheck = winningSigns - 1;
         boolean hasEnoughNeighbours = false;
@@ -37,7 +37,7 @@ class DiagonalChecker implements Checker {
         if (index <= (moves.size() - winningSigns)) {
             Move current = moves.get(index);
             for (int i = 0; i < winningSigns - 1; i++) {
-                Move next = hasNextInDiagonal(current, moves);
+                Move next = hasNextInAntiDiagonal(current, moves);
                 if (!current.equals(next)) {
                     toCheck--;
                 }
@@ -50,10 +50,10 @@ class DiagonalChecker implements Checker {
         return hasEnoughNeighbours;
     }
 
-    private Move hasNextInDiagonal(Move field, List<Move> moves) {
+    private Move hasNextInAntiDiagonal(Move field, List<Move> moves) {
         for (Move move : moves
         ) {
-            if ((field.getField() + gameOptions.whatIsBoardSize() + 1) == move.getField()) {
+            if ((field.getField() - gameOptions.whatIsBoardSize() + 1) == move.getField()) {
                 return move;
             }
         }

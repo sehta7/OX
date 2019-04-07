@@ -54,4 +54,9 @@ class GameOptions {
     Player whoWonGame(){
         return players.whoWon();
     }
+
+    void saveDraw() {
+        players.findCross().draw();
+        players.findNaught().draw();
+    }
 }

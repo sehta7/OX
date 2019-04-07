@@ -6,7 +6,6 @@ import java.util.List;
 /**
  * @author Ola Podorska
  */
-//TODO: implement
 class Judge implements Observer {
 
     private List<Move> crossMoves = new ArrayList<>();
@@ -25,7 +24,10 @@ class Judge implements Observer {
 
     @Override
     public void update(Move move) {
-        boolean horizontal, vertical, diagonal;
+        if (checkIfDraw()){
+
+        }
+        boolean horizontal, vertical, diagonal, antiDiagonal;
         if (move.checkPlayer().equals(Symbol.CROSS)){
             crossMoves.add(move);
             crossMoves.sort(new MoveComparator());
@@ -35,6 +37,8 @@ class Judge implements Observer {
             vertical = checker.checkIfWin(crossMoves);
             checker = new DiagonalChecker(gameOptions);
             diagonal = checker.checkIfWin(crossMoves);
+            checker = new AntiDiagonalChecker(gameOptions);
+            antiDiagonal = checker.checkIfWin(crossMoves);
         } else{
             naughtMoves.add(move);
             naughtMoves.sort(new MoveComparator());
@@ -44,9 +48,15 @@ class Judge implements Observer {
             vertical = checker.checkIfWin(naughtMoves);
             checker = new DiagonalChecker(gameOptions);
             diagonal = checker.checkIfWin(naughtMoves);
+            checker = new AntiDiagonalChecker(gameOptions);
+            antiDiagonal = checker.checkIfWin(naughtMoves);
         }
-        if (horizontal || vertical ||diagonal){
+        if (horizontal || vertical ||diagonal || antiDiagonal){
             winner = move.checkPlayer();
         }
+    }
+
+    boolean checkIfDraw() {
+        return ((crossMoves.size() + naughtMoves.size()) == (gameOptions.whatIsBoardSize() * gameOptions.whatIsBoardSize()));
     }
 }

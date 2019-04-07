@@ -30,6 +30,11 @@ class NaughtRound implements Round {
         move.addObserver(boardDrawer);
         move.addObserver(judge);
         move.notifyAllObservers();
+        if (judge.checkIfDraw()){
+            gameOptions.saveDraw();
+            displayer.displayDraw();
+            return new StartState(gameOptions, ++counter);
+        }
         if (judge.foundWinner() != null){
             currentPlayer.win();
             gameOptions.saveScores(currentPlayer);
