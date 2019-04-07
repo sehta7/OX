@@ -8,11 +8,9 @@ import java.util.List;
 class DiagonalChecker implements Checker {
 
     private GameOptions gameOptions;
-    private Border border;
 
     DiagonalChecker(GameOptions gameOptions) {
         this.gameOptions = gameOptions;
-        border = new Border(gameOptions.whatIsBoardSize());
     }
 
     @Override
@@ -22,7 +20,6 @@ class DiagonalChecker implements Checker {
         for (Move move : moves
         ) {
             if (hasEnoughNeighbours(move, moves, winningSigns)) {
-                //TODO: check sequence in two rows
                 return true;
             }
         }

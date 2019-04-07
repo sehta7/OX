@@ -1,6 +1,5 @@
 package com.name.OX;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -9,11 +8,9 @@ import java.util.List;
 class HorizontalChecker implements Checker {
 
     private GameOptions gameOptions;
-    private Border border;
 
     HorizontalChecker(GameOptions gameOptions) {
         this.gameOptions = gameOptions;
-        border = new Border(gameOptions.whatIsBoardSize());
     }
 
     @Override
@@ -23,7 +20,6 @@ class HorizontalChecker implements Checker {
         for (Move move : moves
         ) {
             if (hasEnoughNeighbours(move, moves, winningSigns)) {
-                //TODO: check sequence in two rows
                 return true;
             }
         }
