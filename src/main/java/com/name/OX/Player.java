@@ -20,8 +20,8 @@ class Player {
         return name;
     }
 
-    int choseField() {
-        InputDataReader inputDataReader = new InputDataReader(scanner);
+    int choseField(Displayer displayer) {
+        InputDataReader inputDataReader = new InputDataReader(scanner, displayer);
         DataInterpreter dataInterpreter = new DataInterpreter();
         return dataInterpreter.interpretField(inputDataReader.readField());
     }
@@ -32,5 +32,10 @@ class Player {
 
     Symbol whichSymbolIsUse(){
         return symbol;
+    }
+
+    @Override
+    public String toString() {
+        return name + " (" + symbol + ")";
     }
 }

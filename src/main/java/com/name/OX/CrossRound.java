@@ -23,14 +23,16 @@ class CrossRound implements Round {
 
     @Override
     public GameState nextState() {
-        //TODO: question
-        int chosenField = currentPlayer.choseField();
+        Displayer displayer = new Displayer(gameOptions.whatIsLanguage());
+        displayer.displayQuestionAboutField();
+        int chosenField = currentPlayer.choseField(displayer);
         Move move = new Move(chosenField, currentPlayer);
         move.addObserver(boardDrawer);
         move.addObserver(judge);
         move.notifyAllObservers();
         if (judge.foundWinner() != null){
-            System.out.println("Winner");
+            displayer.displayWhoWin(currentPlayer);
+            displayer.displayNewRound();
             return new StartState(gameOptions, ++counter);
         } else {
             return new NaughtRound(board, gameOptions, boardDrawer, judge, counter);

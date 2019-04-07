@@ -17,7 +17,7 @@ public class InputDataReaderTest {
 
     @Test(dataProviderClass = DP.class, dataProvider = "availableLanguage")
     public void testIfReadProperLanguage(String inputLanguage) {
-        InputDataReader inputDataReader = new InputDataReader(new Scanner(inputLanguage));
+        InputDataReader inputDataReader = new InputDataReader(new Scanner(inputLanguage), new Displayer(new Language("en")));
         assert (inputLanguage.equals(inputDataReader.readLanguage())) : "Does not read proper value of language";
     }
 
@@ -27,7 +27,7 @@ public class InputDataReaderTest {
         InputDataReader inputDataReader = null;
         String readLanguage = "";
         try {
-            inputDataReader = new InputDataReader(new Scanner(file));
+            inputDataReader = new InputDataReader(new Scanner(file), new Displayer(new Language("en")));
             readLanguage = inputDataReader.readLanguage();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -37,13 +37,13 @@ public class InputDataReaderTest {
 
     @Test(dataProviderClass = DP.class, dataProvider = "player")
     public void testIfReadProperPlayer(String inputPlayer) {
-        InputDataReader inputDataReader = new InputDataReader(new Scanner(inputPlayer));
+        InputDataReader inputDataReader = new InputDataReader(new Scanner(inputPlayer), new Displayer(new Language("en")));
         assert (inputPlayer.equals(inputDataReader.readPlayer())) : "Does not read proper value of player";
     }
 
     @Test(dataProviderClass = DP.class, dataProvider = "boardSize")
     public void testIfReadProperBoardSize(String inputBoardSize) {
-        InputDataReader inputDataReader = new InputDataReader(new Scanner(inputBoardSize));
+        InputDataReader inputDataReader = new InputDataReader(new Scanner(inputBoardSize), new Displayer(new Language("en")));
         assert (inputBoardSize.equals(inputDataReader.readBoardSize())) : "Does not read proper value of player";
     }
 
@@ -52,7 +52,7 @@ public class InputDataReaderTest {
         InputDataReader inputDataReader = null;
         String readBoardSize = "";
         try {
-            inputDataReader = new InputDataReader(new Scanner(file));
+            inputDataReader = new InputDataReader(new Scanner(file), new Displayer(new Language("en")));
             readBoardSize = inputDataReader.readBoardSize();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -62,7 +62,7 @@ public class InputDataReaderTest {
 
     @Test(dataProviderClass = DP.class, dataProvider = "winningSigns")
     public void testIfReadProperWinningSigns(String inputWinningSigns) {
-        InputDataReader inputDataReader = new InputDataReader(new Scanner(inputWinningSigns));
+        InputDataReader inputDataReader = new InputDataReader(new Scanner(inputWinningSigns), new Displayer(new Language("en")));
         assert (inputWinningSigns.equals(inputDataReader.readWinningSigns())) : "Does not read proper value of player";
     }
 
@@ -71,7 +71,7 @@ public class InputDataReaderTest {
         InputDataReader inputDataReader = null;
         String readWinningSigns = "";
         try {
-            inputDataReader = new InputDataReader(new Scanner(file));
+            inputDataReader = new InputDataReader(new Scanner(file), new Displayer(new Language("en")));
             readWinningSigns = inputDataReader.readWinningSigns();
         } catch (FileNotFoundException e) {
             e.printStackTrace();

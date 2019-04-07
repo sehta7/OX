@@ -17,12 +17,13 @@ class OptionsState implements GameState {
 
     @Override
     public GameState nextState() {
-        InputDataReader inputDataReader = new InputDataReader(scanner);
         DataInterpreter dataInterpreter = new DataInterpreter();
         Displayer displayer = new Displayer(new Language("en"));
+        InputDataReader inputDataReader = new InputDataReader(scanner, displayer);
         displayer.displayQuestionAboutLanguage();
         Language language = dataInterpreter.interpretLanguage(inputDataReader.readLanguage());
         displayer = new Displayer(language);
+        inputDataReader = new InputDataReader(scanner, displayer);
         displayer.displayQuestionWhoStarts();
         Player naughtPlayer = dataInterpreter.interpretPlayers(inputDataReader.readPlayer(), scanner);
         naughtPlayer.setSymbol(Symbol.NAUGHT);

@@ -9,11 +9,13 @@ class InputDataReader {
 
     private Scanner scanner;
     private int boardSize;
+    private Displayer displayer;
     private static final int MIN_SIZE = 3;
     private static final int MAX__SIZE = 100;
 
-    InputDataReader(Scanner scanner) {
+    InputDataReader(Scanner scanner, Displayer displayer) {
         this.scanner = scanner;
+        this.displayer = displayer;
     }
 
     String readLanguage() {
@@ -24,7 +26,7 @@ class InputDataReader {
                 throw new NotAvailableLanguageException("Must choose available language only");
             }
         } catch (NotAvailableLanguageException e) {
-            //TODO: add displayer with question
+            displayer.displayLanguageError();
             language = readLanguage();
         }
         return language;
@@ -42,10 +44,10 @@ class InputDataReader {
                 throw new BoardSizeException("Board must be grater than 3 and lower than 100");
             }
         } catch (BoardSizeException e) {
-            //TODO: add displayer with question
+            displayer.displayBoardSizeError();
             size = readBoardSize();
         } catch (NumberFormatException e) {
-            //TODO: add displayer message (only number)
+            displayer.displayNotNumberError();
             size = readBoardSize();
         }
         boardSize = Integer.valueOf(size);
@@ -63,7 +65,7 @@ class InputDataReader {
             //TODO: add displayer with question
             winningSigns = readWinningSigns();
         } catch (NumberFormatException e) {
-            //TODO: add displayer message (only number)
+            displayer.displayNotNumberError();
             winningSigns = readWinningSigns();
         }
         return winningSigns;
@@ -77,8 +79,10 @@ class InputDataReader {
                 throw new BadFieldException("Field must be on the board.");
             }
         } catch (BadFieldException e) {
+            displayer.displayChosenFieldError();
             field = readField();
         } catch (NumberFormatException e) {
+            displayer.displayNotNumberError();
             field = readField();
         }
         return field;

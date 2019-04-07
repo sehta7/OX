@@ -36,4 +36,6 @@ class GameOptions {
     Player whoIsCross(){
         return crossPlayer;
     }
+
+    Language whatIsLanguage(){return language;}
 }

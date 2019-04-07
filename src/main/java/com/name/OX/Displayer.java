@@ -42,7 +42,7 @@ class Displayer {
     }
 
     void displayWhoWin(Player player){
-        System.out.print(language.getSentence("win") + " " + player);
+        System.out.println(language.getSentence("win") + " " + player);
     }
 
     void displayNewRound(){
@@ -63,6 +63,14 @@ class Displayer {
 
     void displayBoardSizeError() {
         System.out.println(language.getSentence("bad_size"));
+    }
+
+    void displayLanguageError() {
+        System.out.println(language.getSentence("bad_language"));
+    }
+
+    void displayNotNumberError() {
+        System.out.println(language.getSentence("not_number_size"));
     }
 
     void displayChosenFieldError() {
