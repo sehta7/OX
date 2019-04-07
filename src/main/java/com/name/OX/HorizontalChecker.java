@@ -42,8 +42,10 @@ class HorizontalChecker implements Checker {
         if (index <= (moves.size() - winningSigns)) {
             for (int i = 0; i < winningSigns; i++) {
                 if (moves.get(index + i).getField() == (move.getField() + i)) {
-                    if (border.isPassed(moves.get(index + i))) {
-                        return false;
+                    if (i != winningSigns - 1){
+                        if (border.isPassed(moves.get(index + i))) {
+                            return false;
+                        }
                     }
                     winningSequence.add(moves.get(index + i));
                     toCheck--;
