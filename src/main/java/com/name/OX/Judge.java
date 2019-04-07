@@ -25,7 +25,7 @@ class Judge implements Observer {
 
     @Override
     public void update(Move move) {
-        boolean horizontal, vertical;
+        boolean horizontal, vertical, diagonal;
         if (move.checkPlayer().equals(Symbol.CROSS)){
             crossMoves.add(move);
             crossMoves.sort(new MoveComparator());
@@ -33,6 +33,8 @@ class Judge implements Observer {
             horizontal = checker.checkIfWin(crossMoves);
             checker = new VerticalChecker(gameOptions);
             vertical = checker.checkIfWin(crossMoves);
+            checker = new DiagonalChecker(gameOptions);
+            diagonal = checker.checkIfWin(crossMoves);
         } else{
             naughtMoves.add(move);
             naughtMoves.sort(new MoveComparator());
@@ -40,10 +42,9 @@ class Judge implements Observer {
             horizontal = checker.checkIfWin(naughtMoves);
             checker = new VerticalChecker(gameOptions);
             vertical = checker.checkIfWin(naughtMoves);
+            checker = new DiagonalChecker(gameOptions);
+            diagonal = checker.checkIfWin(naughtMoves);
         }
-        /*checker = new DiagonalChecker();
-        boolean diagonal = checker.checkIfWin(crossMoves);*/
-        boolean diagonal = false;
         if (horizontal || vertical ||diagonal){
             winner = move.checkPlayer();
         }
