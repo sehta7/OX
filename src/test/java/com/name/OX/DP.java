@@ -39,6 +39,20 @@ class DP {
     }
 
     @DataProvider
+    public static Object[][] sortMoves(){
+        return new Object[][]{
+                {5, 8, -3},
+                {100, 20, 80},
+                {13, 13, 0},
+                {25, 58, -33},
+                {1389, 1389, 0},
+                {45, 34, 11},
+                {72, 86, -14},
+                {69, 69, 0}
+        };
+    }
+
+    @DataProvider
     public static Object[][] player(){
         return new Object[][]{
                 {randomString()},

@@ -33,4 +33,7 @@ class Board {
         return occupiedFields;
     }
 
+    List<Integer> getEmptyFields(){
+        return emptyFields;
+    }
 }
