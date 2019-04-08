@@ -9,10 +9,10 @@ import java.util.List;
 /**
  * @author Ola Podorska
  */
-class AutomatCreatorVertically implements AutomatCreator {
+class AutomatCreatorDiagonally implements AutomatCreator {
     @Override
     public void createFile(int size, int winningSigns) {
-        String name = "/home/ola/Desktop/" + size + "_" + winningSigns + "_v.txt";
+        String name = "/home/ola/Desktop/" + size + "_" + winningSigns + "_d.txt";
         File file = new File(name);
         try (FileWriter fr = new FileWriter(file)) {
             fr.write("en");
@@ -66,20 +66,21 @@ class AutomatCreatorVertically implements AutomatCreator {
     private List<List<Integer>> winningSequences(int winningSigns, int size) {
         List<List<Integer>> allWinningSequences = new ArrayList<>();
         List<Integer> winningSequences;
-        for (int j = 1; j <= (size * size - ((winningSigns - 1) * size)); j++) {
+        for (int j = 1; j < (size * size); j++) {
             winningSequences = new ArrayList<>();
             int index = j, counter = 0;
             while (counter < winningSigns) {
-                if (index > size * size){
-                    break;
+                if (index % size == 0) {
+                    j += winningSigns - 1;
                 }
                 winningSequences.add(index);
-                index += size;
+                if (index == size * size){
+                    j = size * size;
+                    break;
+                }
+                index += (size + 1);
                 counter++;
             }
-            /*if (index == size * size) {
-                break;
-            }*/
             allWinningSequences.add(winningSequences);
         }
 
@@ -87,7 +88,7 @@ class AutomatCreatorVertically implements AutomatCreator {
     }
 
     public static void main(String[] args) {
-        AutomatCreator automatCreator = new AutomatCreatorVertically();
+        AutomatCreator automatCreator = new AutomatCreatorDiagonally();
         automatCreator.createFile(4, 3);
     }
 }

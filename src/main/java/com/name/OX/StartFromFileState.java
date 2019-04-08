@@ -9,7 +9,7 @@ class StartFromFileState implements GameState {
     private int counter;
     private Board board;
 
-    StartFromFileState(GameOptions gameOptions) {
+    StartFromFileState(GameOptions gameOptions, int counter) {
         this.gameOptions = gameOptions;
         this.counter = counter;
         board = new Board(gameOptions.whatIsBoardSize());
@@ -18,9 +18,13 @@ class StartFromFileState implements GameState {
 
     @Override
     public GameState nextState() {
-        //while (true){
-         return new FromFileRound(board, gameOptions, new BoardDrawer(board), new Judge(gameOptions), counter);
-        //}
+        Round round;
+        if (counter % 2 == 0) {
+            round = new NaughtRoundFromFile(board, gameOptions, new BoardDrawer(board), new Judge(gameOptions), counter);
+        } else {
+            round = new CrossRoundFromFile(board, gameOptions, new BoardDrawer(board), new Judge(gameOptions), counter);
+        }
+        return round;
     }
 
     private Player findWinner() {

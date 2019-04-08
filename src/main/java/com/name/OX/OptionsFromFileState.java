@@ -28,7 +28,7 @@ class OptionsFromFileState implements GameState {
         int boardSize = dataInterpreter.interpretBoardSize(inputDataReader.readBoardSize());
         int winningSigns = dataInterpreter.interpretWinningSigns(inputDataReader.readWinningSigns());
         gameOptions.configure(language, new Players(naughtPlayer, crossPlayer), boardSize, winningSigns);
-        return new StartFromFileState(gameOptions);
+        return new StartFromFileState(gameOptions, 0);
     }
 
     @Override

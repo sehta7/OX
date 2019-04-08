@@ -34,7 +34,7 @@ class AntiDiagonalChecker implements Checker {
         if (moves.size() < winningSigns) {
             return false;
         }
-        if (index <= (moves.size() - winningSigns)) {
+        //if (index <= (moves.size() - winningSigns)) {
             Move current = moves.get(index);
             for (int i = 0; i < winningSigns - 1; i++) {
                 Move next = hasNextInAntiDiagonal(current, moves);
@@ -43,7 +43,7 @@ class AntiDiagonalChecker implements Checker {
                 }
                 current = next;
             }
-        }
+        //}
         if (toCheck == 0) {
             hasEnoughNeighbours = true;
         }

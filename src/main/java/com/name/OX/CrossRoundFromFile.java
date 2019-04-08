@@ -3,7 +3,7 @@ package com.name.OX;
 /**
  * @author Ola Podorska
  */
-class FromFileRound implements Round {
+class CrossRoundFromFile implements Round {
 
     private Board board;
     private Player currentPlayer;
@@ -12,13 +12,13 @@ class FromFileRound implements Round {
     private GameOptions gameOptions;
     private int counter;
 
-    FromFileRound(Board board, GameOptions gameOptions, BoardDrawer boardDrawer, Judge judge, int counter) {
+    CrossRoundFromFile(Board board, GameOptions gameOptions, BoardDrawer boardDrawer, Judge judge, int counter) {
         this.board = board;
         this.boardDrawer = boardDrawer;
         this.gameOptions = gameOptions;
         this.judge = judge;
-        currentPlayer = gameOptions.whoIsNaught();
         this.counter = counter;
+        currentPlayer = gameOptions.whoIsCross();
     }
 
     @Override
@@ -41,13 +41,13 @@ class FromFileRound implements Round {
             displayer.displayScore(currentPlayer);
             displayer.displayNewRound();
             return new StartFromFileState(gameOptions, ++counter);
-        } else{
-            return new FromFileRound(board, gameOptions, boardDrawer, judge, counter);
+        } else {
+            return new NaughtRoundFromFile(board, gameOptions, boardDrawer, judge, counter);
         }
     }
 
     @Override
     public GameStateName whichState() {
-        return GameStateName.ROUND_O;
+        return GameStateName.ROUND_X;
     }
 }

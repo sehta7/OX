@@ -12,7 +12,7 @@ import java.util.List;
 class AutomatCreatorHorizontally implements AutomatCreator {
     @Override
     public void createFile(int size, int winningSigns) {
-        String name = "C:\\Users\\Olka\\Desktop\\" + size + "_" + winningSigns + "_h.txt";
+        String name = "/home/ola/Desktop/" + size + "_" + winningSigns + "_h.txt";
         File file = new File(name);
         try (FileWriter fr = new FileWriter(file)) {
             fr.write("en");
@@ -84,6 +84,6 @@ class AutomatCreatorHorizontally implements AutomatCreator {
 
     public static void main(String[] args) {
         AutomatCreator automatCreator = new AutomatCreatorHorizontally();
-        automatCreator.createFile(4, 3);
+        automatCreator.createFile(5, 3);
     }
 }
