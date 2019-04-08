@@ -2,6 +2,7 @@ package com.name.OX;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 /**
@@ -16,14 +17,18 @@ class GameFromFileMain {
     }
 
     public static void main(String[] args) {
-        File file = new File("/home/ola/Desktop/4_3_d.txt");
+        //File file = new File("/home/ola/Desktop/4_3_d.txt");
+        File file = new File("C:\\Users\\Olka\\Desktop\\4_3_a.txt");
+
         try {
             GameFromFileMain gameMain = new GameFromFileMain(new OptionsFromFileState(new GameOptions(), new Scanner(file)));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        while (!currentState.whichState().equals(GameStateName.FINISH)){
-            currentState = currentState.nextState();
+            while (!currentState.whichState().equals(GameStateName.FINISH)) {
+                currentState = currentState.nextState();
+            }
+        } catch (NoSuchElementException exception) {
+            System.exit(0);
+        } catch (FileNotFoundException exception) {
+            exception.printStackTrace();
         }
     }
 }
