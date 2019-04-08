@@ -8,12 +8,14 @@ class StartState implements GameState {
     private GameOptions gameOptions;
     private int counter;
     private Board board;
+    private BoardDrawer boardDrawer;
 
     StartState(GameOptions gameOptions, int counter) {
         this.gameOptions = gameOptions;
         this.counter = counter;
         board = new Board(gameOptions.whatIsBoardSize());
         board.initialize();
+        this.boardDrawer = new BoardDrawer(board);
     }
 
     @Override
@@ -21,8 +23,10 @@ class StartState implements GameState {
         if (counter < 3){
             Round round;
             if (counter % 2 == 0) {
+                boardDrawer.drawEmptyBoard();
                 round = new NaughtRound(board, gameOptions, new BoardDrawer(board), new Judge(gameOptions), counter);
             } else {
+                boardDrawer.drawEmptyBoard();
                 round = new CrossRound(board, gameOptions, new BoardDrawer(board), new Judge(gameOptions), counter);
             }
             return round;

@@ -16,30 +16,29 @@ class BoardDrawer implements Observer {
         this.board = board;
     }
 
-    //TODO: refactor!!
     void drawBoard() {
         int boardSize = board.getBoardSize();
         for (int i = 1; i <= boardSize * boardSize; i++) {
             System.out.print("|");
             if (!moves.isEmpty()) {
                 Move move = findMoveToDraw(i);
-                if (move != null){
+                if (move != null) {
                     drawPlayerSymbols(move);
                 } else {
-                    if (i >= 10 && i < 100){
+                    if (i >= 10 && i < 100) {
                         System.out.print("  " + i + " ");
-                    } else if(i >= 100) {
+                    } else if (i >= 100) {
                         System.out.print(" " + i + " ");
-                    } else if(i < 10){
+                    } else if (i < 10) {
                         System.out.print("  " + i + "  ");
                     }
                 }
-            } else{
-                if (i >= 10 && i < 100){
+            } else {
+                if (i >= 10 && i < 100) {
                     System.out.print(" " + i + " ");
-                } else if(i >= 100) {
+                } else if (i >= 100) {
                     System.out.print("" + i + "");
-                } else{
+                } else {
                     System.out.print(" " + i + "  ");
                 }
             }
@@ -47,6 +46,26 @@ class BoardDrawer implements Observer {
                 System.out.print("|");
                 System.out.println();
                 String pause = " -----";
+                System.out.println(String.join("", Collections.nCopies(boardSize, pause)));
+            }
+        }
+    }
+
+    void drawEmptyBoard() {
+        int boardSize = board.getBoardSize();
+        for (int i = 1; i <= boardSize * boardSize; i++) {
+            System.out.print("|");
+            if (i >= 10 && i < 100) {
+                System.out.print(" " + i + " ");
+            } else if (i >= 100) {
+                System.out.print(" " + i + "");
+            } else {
+                System.out.print(" " + i + "  ");
+            }
+            if (i % boardSize == 0) {
+                System.out.print("|");
+                System.out.println();
+                String pause = " ----";
                 System.out.println(String.join("", Collections.nCopies(boardSize, pause)));
             }
         }
