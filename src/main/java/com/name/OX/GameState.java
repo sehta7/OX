@@ -6,5 +6,5 @@ package com.name.OX;
 interface GameState {
 
     GameState nextState();
-    void whichState();
+    GameStateName whichState();
 }

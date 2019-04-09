@@ -5,12 +5,12 @@ import java.util.Scanner;
 /**
  * @author Ola Podorska
  */
-class OptionsState implements GameState {
+class OptionsFromFileState implements GameState {
 
     private GameOptions gameOptions;
     private Scanner scanner;
 
-    OptionsState(GameOptions gameOptions, Scanner scanner) {
+    OptionsFromFileState(GameOptions gameOptions, Scanner scanner) {
         this.gameOptions = gameOptions;
         this.scanner = scanner;
     }
@@ -18,24 +18,17 @@ class OptionsState implements GameState {
     @Override
     public GameState nextState() {
         DataInterpreter dataInterpreter = new DataInterpreter();
-        Displayer displayer = new Displayer(new Language("en"));
-        InputDataReader inputDataReader = new InputDataReader(scanner, displayer);
-        displayer.displayQuestionAboutLanguage();
+        InputDataReader inputDataReader = new InputDataReader(scanner, new Displayer(new Language("en")));
         Language language = dataInterpreter.interpretLanguage(inputDataReader.readLanguage());
-        displayer = new Displayer(language);
-        inputDataReader = new InputDataReader(scanner, displayer);
-        displayer.displayQuestionWhoStarts();
+        inputDataReader = new InputDataReader(scanner, new Displayer(new Language("en")));
         Player naughtPlayer = dataInterpreter.interpretPlayers(inputDataReader.readPlayer(), scanner);
         naughtPlayer.setSymbol(Symbol.NAUGHT);
-        displayer.displayQuestionAboutPlayer();
         Player crossPlayer = dataInterpreter.interpretPlayers(inputDataReader.readPlayer(), scanner);
         crossPlayer.setSymbol(Symbol.CROSS);
-        displayer.displayQuestionAboutBoardSize();
         int boardSize = dataInterpreter.interpretBoardSize(inputDataReader.readBoardSize());
-        displayer.displayQuestionAboutWinningSigns();
         int winningSigns = dataInterpreter.interpretWinningSigns(inputDataReader.readWinningSigns());
         gameOptions.configure(language, new Players(naughtPlayer, crossPlayer), boardSize, winningSigns);
-        return new StartState(gameOptions, 0);
+        return new StartFromFileState(gameOptions, 0);
     }
 
     @Override
