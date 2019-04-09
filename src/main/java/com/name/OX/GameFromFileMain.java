@@ -17,8 +17,12 @@ class GameFromFileMain {
     }
 
     public static void main(String[] args) {
-        //File file = new File("/home/ola/Desktop/4_3_d.txt");
-        File file = new File("/home/ola/Desktop/7_5_h.txt");
+        Scanner scanner = new Scanner(System.in);
+        String size = scanner.nextLine();
+        String win = scanner.nextLine();
+        String type = scanner.nextLine();
+        String name = "" + size + "_" + win + "_" + type + ".txt";
+        File file = new File("/home/ola/Desktop/" + name);
 
         try {
             GameFromFileMain gameMain = new GameFromFileMain(new OptionsFromFileState(new GameOptions(), new Scanner(file)));

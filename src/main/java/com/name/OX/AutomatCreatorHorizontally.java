@@ -84,6 +84,6 @@ class AutomatCreatorHorizontally implements AutomatCreator {
 
     public static void main(String[] args) {
         AutomatCreator automatCreator = new AutomatCreatorHorizontally();
-        automatCreator.createFile(7, 5);
+        automatCreator.createFile(11, 7);
     }
 }

@@ -89,6 +89,6 @@ class AutomatCreatorDiagonally implements AutomatCreator {
 
     public static void main(String[] args) {
         AutomatCreator automatCreator = new AutomatCreatorDiagonally();
-        automatCreator.createFile(4, 3);
+        automatCreator.createFile(11, 7);
     }
 }

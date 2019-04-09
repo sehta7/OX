@@ -66,30 +66,12 @@ class AutomatCreatorAntiDiagonally implements AutomatCreator {
     private List<List<Integer>> winningSequences(int winningSigns, int size) {
         List<List<Integer>> allWinningSequences = new ArrayList<>();
         List<Integer> winningSequences;
-        /*for (int j = size; j < (size * size); j++) {
-            winningSequences = new ArrayList<>();
-            int index = j, counter = 0;
-            while (counter < winningSigns) {
-                if (index % size == 0) {
-                    j = index - winningSigns - 1;
-                }
-                winningSequences.add(index);
-                if (index == size * size - size){
-                    j = size * size;
-                    break;
-                }
-                index += (size - 1);
-                counter++;
-            }
-            allWinningSequences.add(winningSequences);
-        }*/
-
         for (int j = size * size - size + 1; j < size * size; j++){
             winningSequences = new ArrayList<>();
             int index = j, counter = 0;
             while (counter < winningSigns){
                 if (index % size == 0){
-                    j = index;
+                    j -= 2 * winningSigns;
                 }
                 if (index == size){
                     winningSequences.add(index);
@@ -108,6 +90,6 @@ class AutomatCreatorAntiDiagonally implements AutomatCreator {
 
     public static void main(String[] args) {
         AutomatCreator automatCreator = new AutomatCreatorAntiDiagonally();
-        automatCreator.createFile(4, 3);
+        automatCreator.createFile(11, 7);
     }
 }

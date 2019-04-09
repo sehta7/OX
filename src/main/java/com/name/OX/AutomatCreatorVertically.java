@@ -77,9 +77,6 @@ class AutomatCreatorVertically implements AutomatCreator {
                 index += size;
                 counter++;
             }
-            /*if (index == size * size) {
-                break;
-            }*/
             allWinningSequences.add(winningSequences);
         }
 
@@ -88,6 +85,6 @@ class AutomatCreatorVertically implements AutomatCreator {
 
     public static void main(String[] args) {
         AutomatCreator automatCreator = new AutomatCreatorVertically();
-        automatCreator.createFile(4, 3);
+        automatCreator.createFile(11, 7);
     }
 }
