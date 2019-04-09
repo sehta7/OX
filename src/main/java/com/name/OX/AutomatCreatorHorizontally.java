@@ -35,7 +35,7 @@ class AutomatCreatorHorizontally implements AutomatCreator {
                     fr.write(String.valueOf(winning.get(0)));
                     winning.remove(0);
                     fr.write(System.getProperty("line.separator"));
-                    if (i < 2){
+                    if (i < winningSigns - 1){
                         fr.write(String.valueOf(notAvailableFields.get(0)));
                         notAvailableFields.remove(0);
                         fr.write(System.getProperty("line.separator"));
@@ -84,6 +84,6 @@ class AutomatCreatorHorizontally implements AutomatCreator {
 
     public static void main(String[] args) {
         AutomatCreator automatCreator = new AutomatCreatorHorizontally();
-        automatCreator.createFile(5, 3);
+        automatCreator.createFile(7, 5);
     }
 }

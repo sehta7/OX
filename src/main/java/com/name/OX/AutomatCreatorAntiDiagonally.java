@@ -12,7 +12,7 @@ import java.util.List;
 class AutomatCreatorAntiDiagonally implements AutomatCreator {
     @Override
     public void createFile(int size, int winningSigns) {
-        String name = "C:\\Users\\Olka\\Desktop\\" + size + "_" + winningSigns + "_a.txt";
+        String name = "/home/ola/Desktop/" + size + "_" + winningSigns + "_a.txt";
         File file = new File(name);
         try (FileWriter fr = new FileWriter(file)) {
             fr.write("en");
@@ -35,7 +35,7 @@ class AutomatCreatorAntiDiagonally implements AutomatCreator {
                     fr.write(String.valueOf(winning.get(0)));
                     winning.remove(0);
                     fr.write(System.getProperty("line.separator"));
-                    if (i < 2){
+                    if (i < winningSigns - 1){
                         fr.write(String.valueOf(notAvailableFields.get(0)));
                         notAvailableFields.remove(0);
                         fr.write(System.getProperty("line.separator"));

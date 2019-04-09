@@ -35,7 +35,7 @@ class AutomatCreatorVertically implements AutomatCreator {
                     fr.write(String.valueOf(winning.get(0)));
                     winning.remove(0);
                     fr.write(System.getProperty("line.separator"));
-                    if (i < 2){
+                    if (i < winningSigns - 1){
                         fr.write(String.valueOf(notAvailableFields.get(0)));
                         notAvailableFields.remove(0);
                         fr.write(System.getProperty("line.separator"));
