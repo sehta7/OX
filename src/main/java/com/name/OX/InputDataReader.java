@@ -61,6 +61,9 @@ class InputDataReader {
             if (!checkIfWinningSignsAreGood(winningSigns)) {
                 throw new WinningSignsException("Number of winning signs must be greater than 3 and lower than board size");
             }
+            if (Integer.valueOf(winningSigns) > boardSize){
+                displayer.displayBadWinningSigns();
+            }
         } catch (WinningSignsException e) {
             //TODO: add displayer with question
             winningSigns = readWinningSigns();

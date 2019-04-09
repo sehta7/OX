@@ -76,6 +76,10 @@ class Displayer {
         System.out.println(language.getSentence("bad_field"));
     }
 
+    void displayBadWinningSigns() {
+        System.out.println(language.getSentence("bad_winning_signs"));
+    }
+
     /*void displayScores(Map<String, Player> players) {
         for (Map.Entry<String, Player> entry : players.entrySet()
         ) {
